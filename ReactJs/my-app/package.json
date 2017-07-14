@@ -1,0 +1,25 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "github-pagination": "^0.1.0",
+    "jquery": "^3.2.1",
+    "react": "^15.6.1",
+    "react-addons-perf": "^15.4.2",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.6.1",
+    "react-paginate": "^4.4.3",
+    "react-scripts": "1.0.10",
+    "react-tabs": "^1.1.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "expose-loader": "^0.7.3"
+  }
+}

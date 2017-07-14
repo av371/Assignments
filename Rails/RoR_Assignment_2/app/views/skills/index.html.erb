@@ -1,0 +1,15 @@
+<h1>Skills Present</h1>
+
+
+<table>
+  <tr>
+    <th>Skill List</th>
+  </tr>
+ 
+  <% @skills.each do |skil| %>
+    <tr>
+      <td><%= skil.skill %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'Add New Skill', new_skill_path %>

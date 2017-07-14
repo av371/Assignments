@@ -1,0 +1,57 @@
+1_A. Creating Tables
+
+      create table customers (id int primary key,  name text, email text, address text;
+      create table items  (item_id int primary key,  item_name text, price text );
+
+1_B. Adding Values to the tables
+      copy customers from '/home/user/customers.csv' delimiter ',' csv;
+      copy items from '/home/user/items.csv' delimiter ',' csv;
+
+2. Put a constraint on customers table where email should be unique
+      alter table customers add constraint MyUniqueConstraint unique(email);
+
+3_A.Put a constraint on items table such that name of the item be unique
+      alter table items add constraint MyUnique unique(item_name);
+
+3_B. Put a constraint on items table such that amount should not be null.
+      alter table items alter column price set not null;
+
+4.Get all the values in the items table above 40000
+      select * from items where price >40000;
+
+5. Get all the values in items with price between 13000 and 50000
+      select * from items where price between 13000 and 50000;
+
+6. Get all the values in the items table below 12000
+      select * from items where price < 12000;
+
+7. Add another field phone numbers to customer table and insert some values into it and put a constraint on this field that it should be unique.
+      alter table customers add contact int;
+      	 update customers set contact = 7731045533 where id = 1;
+	 update customers set contact = 7731045532 where id = 2;
+	 update customers set contact = 7731045531 where id = 3;
+	 update customers set contact = 7731045534 where id = 4;
+	 update customers set contact = 7731045535 where id = 5;
+	 update customers set contact = 7731045536 where id = 6;
+	 update customers set contact = 7731045537 where id = 7;
+	 update customers set contact = 7731045538 where id = 8;
+	 update customers set contact = 7731045539 where id = 9;
+	 update customers set contact = 7731045530 where id = 10;	
+    
+8. Get all the customers whose name was repeated more than once in customers table
+      select name,count(name) from customers group by name having count(1) >1;
+
+9. Get the first 5 items in items table according to their price(Descending order).
+      select item_name, price from items order by price dessc limit 5;
+
+10. Get all the values of customers which match the name “ra” & “ph”
+      select * from customers where name like '%ra%' or name like '%ph%';
+
+11. Get the customers who doesn’t live in Hyd
+      select names from customers where address !='Hyd';
+12. Get the number of items in items table.
+      select count(item_name) from items;
+13. Get the total price of all items
+      select sum(price) from items;
+14. Get average price of all items
+      select avg(price) from items;

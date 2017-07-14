@@ -1,0 +1,28 @@
+<h1>Details</h1>
+
+
+ <%= link_to 'Add New Employee', new_employee_path %>
+
+<table>
+  <tr>
+    <th>Employee Name</th>
+    <th>Project</th>
+    <th>Team Lead</th>
+    <th>Skills</th>
+    <th></th>
+  </tr>
+ 
+  
+  <tr>
+    <td><%= @employee.name %></td>
+    <td><%= @employee.project.project_name %></td>
+    <td><%= @employee.team_lead.team_lead_name %></td>
+      <% @employee.skills.each do |t| %>
+    <td> <%= t.skill %></td>
+      <% end %>
+  	<td><%= link_to 'Destroy', employee_path(@employee),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  
+</table>

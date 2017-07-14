@@ -1,0 +1,50 @@
+<DOCTYPE! html>
+<head>
+<style>
+.directory{
+    position: absolute;
+    left: 910px;
+    top: 68px;
+}
+.directory1{
+    position: absolute;
+    left: 1300px;
+    top: 68px;
+}
+#errors{
+    position: absolute;
+    left: 1300px;
+    top: 8px;
+
+}
+.search{
+    position: absolute;
+    left: 1300px;
+    top: 80px;
+}
+</style>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+        <p id="errors" class="alert alert-warning"" hidden></p>
+     
+        <h1 id="current_folder">Enter Here</h1>
+         <input type="text" name="name" id="decode">
+         <input type="button" value="Create File or Folder" id="button1">
+         
+    <span class="search">
+          
+         <input type="text" name="name" id="search">
+         <input type="button" value="search" id="button3">
+         <p id="path"></p>
+    </span>
+    <div id="directory" align="center" class="directory"></div>
+    <div align="center" id="root" class="childshow"></div>
+    <input type="button" value="move up" id="button2">
+    <div id="elements"  class="directory1"></div>
+</body>
+<script src="/home/user/ES6-2/destination/app.js"></script>
+</html>

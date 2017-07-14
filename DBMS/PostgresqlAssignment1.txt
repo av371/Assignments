@@ -1,0 +1,31 @@
+create table accidents(states varchar,in2008 int,in2009 int,in2010 int,in2011 int,in2012 int,in2013 int,in2014 int,in2015 int)
+copy accidents from '/home/user/accidents.csv' delimiter ',' csv;
+
+create table topthree(top2008,top2009,top2010,top2011,top2012,top2013,top2014,top2015)
+
+with
+a as (select state, row_number() over (order by "top2008" desc) as rn from accidents limit 3),
+b as (select state, row_number() over (order by "top2009" desc) as rn from accidents limit 3),
+c as (select state, row_number() over (order by "top2010" desc) as rn from accidents limit 3),
+d as (select state, row_number() over (order by "top2011" desc) as rn from accidents limit 3),
+e as (select state, row_number() over (order by "top2012" desc) as rn from accidents limit 3),
+f as (select state, row_number() over (order by "top2013" desc) as rn from accidents limit 3),
+g as (select state, row_number() over (order by "top2014" desc) as rn from accidents limit 3) 
+h as (select state, row_number() over (order by "top2015" desc) as rn from accidents limit 3) 
+select
+a.state as "2008",
+b.state as "2009",
+c.state as "2010",
+d.state as "2011",
+e.state as "2012",
+f.state as "2013",
+g.state as "2014",
+h.state as "2015"
+from a
+inner join b on b.rn=a.rn
+inner join c on c.rn=a.rn
+inner join d on d.rn=a.rn
+inner join e on e.rn=a.rn
+inner join f on f.rn=a.rn
+inner join g on g.rn=a.rn
+inner join h on h.rn=a.rn

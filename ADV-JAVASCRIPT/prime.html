@@ -1,0 +1,54 @@
+<DOCTYPE! html>
+<head>
+<style>
+</style>
+</head>
+<body >
+  <div  align="center">
+ 
+    <form id="frm1" >
+     Enter Number: <input type="text" name="pName" id="number" required><br>
+    </form> 
+      <input type="submit" value="Submit" id="button1" >
+   
+  </div>
+
+
+
+</body>
+<script type="text/javascript">
+var a = document.getElementById("button1");
+a.addEventListener("click", check);
+
+
+function check(){
+  var value = document.getElementById("number").value;
+  bool = isPrime(value);
+  alert(bool);
+}
+
+var isPrime = (function(){  
+  var answers = {};
+  
+  return function(value){
+
+    if (answers[value] != null) {
+      console.log('had in cache...');
+     
+      return answers[value];
+    }
+    var prime = value != 1; 
+    for (var i = 2; i < value; i++) {
+      if (value % i == 0) {
+        prime = false;
+        break;
+      }
+    }
+    console.log('hadn\'t in cache...');
+    
+ 
+    return answers[value] = prime;
+  };
+}());
+</script>
+</html>

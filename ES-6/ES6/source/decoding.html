@@ -1,0 +1,67 @@
+<DOCTYPE! html>
+<head>
+<style>
+</style>
+</head>
+<body>
+  
+   	
+   		<h1>Enter Number</h1>
+      	 <input type="number" name="number" id="decode">
+      	 <input type="button" value="Submit" id="button1">
+    
+    <span id="result"></span>
+</body>
+<script src="/home/user/ES6/source/decoding.js"></script>
+<!-- <script>
+
+	var a = document.getElementById("button1");
+	a.addEventListener("click", decodeSequence);
+
+	function decodeSequence(){
+
+		var num = document.getElementById('decode').value.split('');
+
+		var counter = 0;
+		var initial = parseInt(num[0]);
+		var array = [];
+		var i;
+		var new_num = 0;
+		var check =0;
+		while(counter < num.length){
+			
+			new_num = decode(counter,initial);
+			counter+= initial + 1;
+			initial = parseInt(num[counter]);
+			array.push(new_num);
+			check += new_num;
+
+		}
+
+		function decode(a,b){
+			var value = [];
+			var val = 0;
+			if((a+1+b) <= num.length){
+				for(i = a+1; i < a+1+b; i++){
+				 	value.push(parseInt(num[i]));
+				 
+				}
+				val = value.join("");
+				console.log(val)
+			}else{
+
+				for(i = a+1; i < num.length; i++){
+				 	value.push(parseInt(num[i]));
+				}
+				val = value.join("");
+				console.log(val)
+			}
+			return val;
+		}
+		console.log(check);
+
+		} 
+
+
+</script> -->
+</html> 

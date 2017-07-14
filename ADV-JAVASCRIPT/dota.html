@@ -1,0 +1,144 @@
+<DOCTYPE! html>
+<head>
+<style>
+</style>
+</head>
+<body>
+  
+   	<form id="frm1" >
+   		<h1 >Select Your Hero</h1>
+    	<select id="heros" align="center" onchange="showHeroId(this)""></select>
+    </form> 
+      	<input type="submit" value="Submit" id="button1" >
+ 
+    <div id="abilities" style="display:none">
+    	<h1>Select Abilities</h1>
+	 	<form id="frm2" >
+	    	
+	    </form> 
+	      <input type="submit" value="Submit" id="button2" >
+	</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+var chkArray = [];
+var heroId ;
+var heroCreated = [];
+var heros ={hero1 : { constant : { movement_speed:500, Armour :250, base_mana:240, base_hp:700}, variable : { 			  strength:55, intelligence:20,agility :42}},
+			hero2 : { constant : { movement_speed:550, Armour :325, base_mana:240, base_hp:750}, variable : { strength:48, intelligence:27,agility :42}},
+			hero3 : { constant : { movement_speed:600, Armour :275, base_mana:240, base_hp:700}, variable : { strength:52, intelligence:23,agility :42}},
+			hero4 : { constant : { movement_speed:650, Armour :325, base_mana:240, base_hp:750}, variable : { strength:53, intelligence:22,agility :42}},
+			hero5 : { constant : { movement_speed:525, Armour :300, base_mana:240, base_hp:750}, variable : { strength:49, intelligence:26,agility :42}},
+			hero6 : { constant : { movement_speed:575, Armour :225, base_mana:240, base_hp:700}, variable : { strength:56, intelligence:19,agility :42}},
+			hero7 : { constant : { movement_speed:625, Armour :275, base_mana:240, base_hp:750}, variable : { strength:58, intelligence:17,agility :42}},
+			hero8 : { constant : { movement_speed:650, Armour :375, base_mana:240, base_hp:700}, variable : { strength:57, intelligence:18,agility :42}},
+			hero9 : { constant : { movement_speed:675, Armour :275, base_mana:240, base_hp:750}, variable : { strength:50, intelligence:25,agility :42}},
+			hero10 : { constant : { movement_speed:475, Armour :250, base_mana:240, base_hp:700}, variable: { strength:47, intelligence:28,agility :42}},
+			hero11 : { constant : { movement_speed:500, Armour :325, base_mana:240, base_hp:750}, variable :{ strength:59, intelligence:16,agility :42}},
+			hero12 : { constant : { movement_speed:600, Armour :350, base_mana:240, base_hp:700}, variable :{ strength:50, intelligence:25,agility :42}}};
+
+var abilities = {ability1:{cooldown:0,mana_cost:250},ability2:{cooldown:0,mana_cost:200},ability3:{cooldown:1,mana_cost:220},ability4:{cooldown:2,mana_cost:250},ability5:{cooldown:2,mana_cost:200},ability6:{cooldown:3,mana_cost:230},ability7:{cooldown:4,mana_cost:240},ability8:{cooldown:5,mana_cost:180},ability9:{cooldown:0,mana_cost:190},ability10:{cooldown:1,mana_cost:210},ability11:{cooldown:2,mana_cost:205},ability12:{cooldown:3,mana_cost:215},ability13:{cooldown:4,mana_cost:225},ability14:{cooldown:5,mana_cost:235},ability15:{cooldown:0,mana_cost:195},ability16:{cooldown:1,mana_cost:185},ability17:{cooldown:2,mana_cost:200},ability18:{cooldown:3,mana_cost:215},ability19:{cooldown:4,mana_cost:225},ability20:{cooldown:5,mana_cost:250},ability21:{cooldown:0,mana_cost:245}};
+
+var sel = document.getElementById('heros');
+
+
+for(var i = 0; i < Object.keys(heros).length; i++) {
+    var opt = document.createElement('option');
+    opt.innerHTML = Object.keys(heros)[i];
+    opt.value = Object.keys(heros)[i];
+    opt.setAttribute('id','hero'+(i+
+    	1));
+    sel.appendChild(opt);
+   
+}
+var a = document.getElementById("button1");
+a.addEventListener("click", selectAbilities);
+
+function showHeroId(s) {
+   
+  heroId = s[s.selectedIndex].id;
+}
+
+function selectAbilities(){
+	var mybr = document.createElement('br');
+	
+	document.getElementById('abilities').style.display = 'block';
+	var sel1 = document.getElementById('frm2');
+	var ol1 = document.createElement('ol')
+	ol1.setAttribute("id",heroId)
+	for(var i = 0; i < Object.keys(abilities).length; i++) {
+		var lis = document.createElement('li');
+		var c = 'ability'+(i+1);
+		var opt2 = document.createElement('label');
+		opt2.appendChild(document.createTextNode('Ability'+(i+1)+'-  '+'Cool Down-'+abilities[c].cooldown+',Mana Cost-'+abilities[c].mana_cost));
+
+		var opt1 = document.createElement('input');
+		opt1.type = 'checkbox';
+		    opt1.setAttribute('class','checked');
+	    opt1.setAttribute('id','ability'+(i+
+	    	1));
+	
+	    opt2.appendChild(opt1);
+	    opt2.appendChild(mybr);
+	    lis.appendChild(opt2);
+	    ol1.appendChild(lis)
+	    sel1.appendChild(ol1);
+
+	} 
+	$checkbox = $('.checked');
+
+	$checkbox.click(checkArray);
+
+	function checkArray(){
+	
+    	
+    	chkArray = $.map($checkbox, function(el){
+        if(el.checked) { return el.id };
+    	});
+    	if(chkArray.length > 4){
+    		alert("Select Only Four Abilities Before You Submit")
+
+   		}
+   		console.log(chkArray);
+	}
+}
+
+var b = document.getElementById("button2");
+b.addEventListener("click", checkAbilities);
+
+function checkAbilities(){
+
+	var mana = max_pool(heros[heroId].constant.base_mana, heros[heroId].variable.intelligence);
+ 	
+ 	var counter = 0;
+
+	 var manaCheck = abilities[chkArray[0]].mana_cost + abilities[chkArray[1]].mana_cost + abilities[chkArray[2]].mana_cost + abilities[chkArray[3]].mana_cost;
+	
+	 for(var j = 0; j < chkArray.length; j++){
+
+	 	if(abilities[chkArray[j]].cooldown > 0){
+	 		counter++;
+	 	}
+
+	 }
+	 console.log(counter);
+	 if(mana >= manaCheck && counter > 1){
+	 	heroCreated[heroId] = [chkArray[0],chkArray[1],chkArray[2],chkArray[3]];
+	 	alert("Hero Created Successfully!");
+	 	//console.log(heroCreated[heroId]);
+	 	$("#frm2").empty();
+	 	console.log(Object.keys(heroCreated));
+
+	 }else{
+	 	alert("Change abilities and submit again");
+	 }
+} 
+
+
+function max_pool(base,intell){
+	var maximum_mana_pool = base+intell+687.5;
+	return maximum_mana_pool;
+}
+
+</script>
+</body>
+</html>

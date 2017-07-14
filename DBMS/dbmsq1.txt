@@ -1,0 +1,10 @@
+create table students(id int primary key,name varchar);
+create table friends(id int primary key,friend_id int);
+create table packages(id int primary key,salary float);
+
+
+insert into students(id,name) values(1,'arvind'),(2,'sanki'),(3,'karun'),(4,'varun');
+insert into friends(id,friend_id) values(1,2),(2,3),(3,1),(4,3);
+insert into packages(id,salary) values(1,10000),(2,20000),(3,30000),(4,40000);
+
+select s.name from students as s left join  friends as f on f.id = s.id left join packages as p on f.friend_id = p.id left join packages as p1 on p1.id = s.id where p.salary > p1.salary
